@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UoM Cup Tracking System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">University of Melbourne</div>
+            <h1 class="title">Cup Tracking System</h1>
+            <div class="cup-count">
+                <span>Active Cups:</span>
+                <div class="cup-icons" id="cupIcons">
+                    <svg class="cup-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                    </svg>
+                    <svg class="cup-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                    </svg>
+                    <svg class="cup-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalBorrowed">0</div>
+                <div class="stat-label">Total Borrowed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalReturned">0</div>
+                <div class="stat-label">Total Returned</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="borrowBtn" class="btn">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                Borrow Cup
+            </button>
+            <button id="returnBtn" class="btn">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                    <path d="M3 3v5h5"></path>
+                </svg>
+                Return Cup
+            </button>
+        </div>
+
+        <div id="overlay" class="overlay"></div>
+
+        <div id="scannerContainer" class="scanner-container">
+            <button id="closeScanner" class="btn-close">×</button>
+            <div class="scanner-wrapper">
+                <div id="reader"></div>
+                <div id="scannerOverlay" class="scanner-overlay" style="display: none;">
+                    Processing QR Code...
+                </div>
+            </div>
+        </div>
+
+        <div id="alert" class="alert"></div>
+
+        <div class="history-section">
+            <div class="history-title">
+                <span>Activity History</span>
+                <button id="clearHistory" class="clear-history">Clear History</button>
+            </div>
+            <div id="historyList" class="history-list"></div>
+        </div>
+
+        <div class="footer">
+            © 2024 The University of Melbourne Cup Tracking System
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
