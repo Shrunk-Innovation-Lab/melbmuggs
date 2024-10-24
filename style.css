@@ -1,0 +1,396 @@
+:root {
+    --unimelb-blue: #002C5F;
+    --unimelb-navy: #002A54;
+    --unimelb-black: #000000;
+    --unimelb-white: #FFFFFF;
+    --unimelb-grey: #F0F0F0;
+    --unimelb-light-blue: #1E90FF;
+    --unimelb-success: #008542;
+    --unimelb-error: #DA2644;
+    --unimelb-warning: #FFA500;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--unimelb-grey);
+    color: var(--unimelb-navy);
+    padding: 2rem 1rem;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--unimelb-white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.header {
+    padding: 2rem;
+    text-align: center;
+    background: var(--unimelb-blue);
+    color: var(--unimelb-white);
+}
+
+.logo {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.cup-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin: 1rem auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cup-icons {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.cup-icon {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+}
+
+.cup-icon.active {
+    color: var(--unimelb-white);
+    opacity: 1;
+}
+
+.cup-icon.inactive {
+    color: rgba(255, 255, 255, 0.3);
+    opacity: 0.5;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--unimelb-grey);
+}
+
+.stat-card {
+    background: var(--unimelb-white);
+    padding: 1.25rem;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--unimelb-blue);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--unimelb-white);
+}
+
+.btn {
+    padding: 1.25rem;
+    border: none;
+    border-radius: 4px;
+    color: var(--unimelb-white);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--unimelb-blue);
+}
+
+.btn:not(:disabled):hover {
+    background: var(--unimelb-navy);
+    transform: translateY(-2px);
+}
+
+.btn:not(:disabled):active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.scanner-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background: var(--unimelb-white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    max-width: 90vw;
+    width: 500px;
+    padding: 1.5rem;
+}
+
+.scanner-container.active {
+    display: block;
+}
+
+.scanner-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#reader {
+    width: 100% !important;
+    border: none !important;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#reader video {
+    width: 100% !important;
+    border-radius: 4px;
+}
+
+.btn-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--unimelb-blue);
+    color: var(--unimelb-white);
+    border: none;
+    border-radius: 4px;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.btn-close:hover {
+    background: var(--unimelb-navy);
+    transform: rotate(90deg);
+}
+
+.alert {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 4px;
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.alert.success {
+    background: #E3F5E9;
+    color: var(--unimelb-success);
+    border-left: 4px solid var(--unimelb-success);
+    display: block;
+}
+
+.alert.error {
+    background: #FFEBEE;
+    color: var(--unimelb-error);
+    border-left: 4px solid var(--unimelb-error);
+    display: block;
+}
+
+.alert.warning {
+    background: #FFF3E0;
+    color: var(--unimelb-warning);
+    border-left: 4px solid var(--unimelb-warning);
+    display: block;
+}
+
+.history-section {
+    padding: 1.5rem;
+    background: var(--unimelb-white);
+    border-top: 1px solid var(--unimelb-grey);
+}
+
+.history-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--unimelb-blue);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.clear-history {
+    font-size: 0.875rem;
+    color: var(--unimelb-error);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--unimelb-error);
+    transition: all 0.2s ease;
+}
+
+.clear-history:hover:not(:disabled) {
+    background: var(--unimelb-error);
+    color: var(--unimelb-white);
+}
+
+.clear-history:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.history-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.history-item {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: var(--unimelb-grey);
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.history-item.borrow {
+    border-left: 4px solid var(--unimelb-success);
+}
+
+.history-item.return {
+    border-left: 4px solid var(--unimelb-light-blue);
+}
+
+.history-item-time {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.history-item-code {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.footer {
+    padding: 1.5rem;
+    text-align: center;
+    background: var(--unimelb-blue);
+    color: var(--unimelb-white);
+    font-size: 0.875rem;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke-width: 2;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .actions {
+        padding: 1rem;
+    }
+
+    .btn {
+        padding: 1rem;
+    }
+
+    .scanner-container {
+        width: 95vw;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+#reader__dashboard_section_swaplink {
+    display: none !important;
+}
+
+#reader__dashboard_section_csr button {
+    background: var(--unimelb-blue) !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    border-radius: 4px !important;
+}
